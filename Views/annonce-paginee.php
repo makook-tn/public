@@ -89,7 +89,7 @@
                                     <td><i class="fa fa-dashboard"></i> Diesel</td>
                                     <td><i class="fa fa-cog"></i> Auto</td>
                                     <td><i class="fa fa-road"></i> 25000</td>
-                                    <td class="buttons"><a class="btn btn-theme" href="detail-annonce.php">Voir détails</a></td>
+                                    <td class="buttons"><a class="btn btn-theme" href="../Controller/DetailController.php?id_annonce=<?php echo $annonces[$i]['id_annonce']; ?>">Voir détails</a></td>
                                 </tr>
                             </table>
                         </div> 

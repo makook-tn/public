@@ -80,11 +80,11 @@
                             <!-- navigation menu -->
                             <a href="#" class="menu-toggle-close btn"><i class="fa fa-times"></i></a>
                             <ul class="nav sf-menu">
-                                <li class="active"><a href="index.html">Annonces en Tunisie</a> </li>
-                                <li><a href="annonce-listing.html">Liste annonces en tunisie</a></li>
+                                <li class="active"><a href="../index.php">Annonces en Tunisie</a> </li>
+                                <li><a href="annonce-listing.php">Liste annonces en tunisie</a></li>
                                 
                 
-                                <li><a href="contact.html">Contact</a></li>
+                                <li><a href="contact.php">Contact</a></li>
                                 <li>
                                     <ul class="social-icons">
                                         <li><a href="#" class="facebook"><i class="fa fa-facebook"></i></a></li>
@@ -110,7 +110,17 @@
 
     <!-- CONTENT AREA -->
     <div class="content-area">
-
+  <?php 
+   
+        if (isset($_GET["id_annonce"])) {
+            
+            //include '../Controller/AnnonceController.php'; 
+            //include '../Controller/RegionController.php';
+             //var_dump($uneannonce);
+        // getRegion($uneannonce[0]['id_region']);
+            //var_dump($uneregion);
+        }  
+  ?>
         <!-- BREADCRUMBS -->
         <section class="page-section breadcrumbs text-center">
             <div class="container">
@@ -118,9 +128,9 @@
                      
                 </div>
                 <ul class="breadcrumb">
-                    <li><a href="#">Categorie</a></li>
-                    <li><a href="#">Sous categorie</a></li>
-                    <li class="active">Titre annonce</li>
+                    <li><a href="#"><?php  echo $unecategorie[0]['titre'] ?></a></li>
+                    <li><a href="annonce-listing.php?id_cat"><?php  echo $souscategorie[0]['titre'] ?></a></li>
+                    <li class="active"><?php echo $uneannonce[0][1]?></li>
                 </ul>
             </div>
         </section>
@@ -132,8 +142,8 @@
 
                 <div class="row">
                     <div class="col-lg-8 col-md-7 col-sm-12 project-media">
-                         <h4 class="caption-title  caption-titre-annonce"><a href="#">VW POLO TRENDLINE 2.0 TDI</a></h4>
-                           <h5 class="caption-prix-annonce"> 39$/per a day</h5>
+                         <h4 class="caption-title  caption-titre-annonce"><a href="#"><?php echo $uneannonce[0][1]?></a></h4>
+                           <h5 class="caption-prix-annonce"> <?php echo $uneannonce[0]['Val_Critere_1']?></h5>
                               <div class="rating">
                                  
                                    <span class="star active"></span><!--
@@ -159,7 +169,7 @@
                                 <dt>Annonceur</dt>
                                 <dd>LoremIpsumDolor</dd>
                                 <dt>Mise en ligne </dt>
-                                <dd>15 December, 2014</dd>
+                                <dd><?php echo $uneannonce[0]['date_insertion'];?></dd>
                             </dl>
                             <h3 class="block-title"><span> voir avis expert</span></h3>
                             
@@ -175,13 +185,13 @@
                           
                            <dl class=" ">
                                
-                                 <dt>Régions</dt>
-                                <dd><a href="#">tunis</a>   <button class="btn-map"  ><i class="fa fa-map-marker"></i></button></dd>
+                                  
+                                 <dd><a href="#"><?php  echo $uneregion[0]['region']  ; ?></a>    <button class=" btn btn-map"  ><i class="fa fa-map-marker"></i></button></dd>
                             </dl>
                            
                            
-                            <p>Sanctus sea sed takimata ut vero voluptua. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.</p>
-                            <p>Sanctus sea sed takimata ut vero voluptua. At vero eos et accusam et justo duo dolores et ea rebum.</p>
+                            <p> <?php echo $uneannonce[0]['description']?>;  </p>
+                            
                         </div>
                     
                   
@@ -205,7 +215,7 @@
 
                 <hr class="page-divider half"/>
 
-                <h2 class="block-title">Annonces connexes</h2>
+                <h2 class="block-title">Annonces Proches</h2>
 
                 <div class="row thumbnails portfolio">
                     <div class="col-sm-6 col-md-3">

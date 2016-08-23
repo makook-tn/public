@@ -44,17 +44,38 @@ class Categorie extends lib{
 
         return $row;
             
-    
-               // var_dump($result);
+     }
+
+
+         
+    function getCategorieById($id){
        
-                
+           $row = "";
+        try {
+            $query = "SELECT * FROM $this->table Where id_categorie=$id ORDER BY id_categorie ASC  ";
+        
+            //echo "Display".$this->table.$query;
+            if (!$result = $this->con->select($query)) {
+                throw new Exception("ERROR QYERY NOT EXCUTED");
+            } else {
+                $num = $this->con->selectTableau($query);
+                if (count($num) > 0) {
+                    foreach ($result as $key => $value) {
+                        $row[$key] = $value;
+                    }
+                }
+            }
+        } catch (Exception $exc) {
+            echo $exc->getMessage();
+        }
+
+        return $row;
+            
      }
 
 
 
 
 
-
-
-    //put your code here
+    
 }

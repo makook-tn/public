@@ -119,9 +119,9 @@
                                 <li class="active"><a href="../index.php">Annonces en Tunisie</a>
                                    
                                 </li>
-                                <li><a href="annonce-listing.html">Liste annonces en tunisie</a></li>
+                                <li><a href="annonce-listing.php">Liste annonces en tunisie</a></li>
                                 
-                                <li><a href="contact.html">Contactez nous</a></li>
+                                <li><a href="contact.php">Contactez nous</a></li>
                                 <li>
                                     <ul class="social-icons">
                                         <li><a href="#" class="facebook"><i class="fa fa-facebook"></i></a></li>

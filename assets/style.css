@@ -389,9 +389,11 @@ padding-left: 7% !important;
 .btn-map
 {
     float: right;
-    height: 30px;
-    line-height: 28px;
-    margin-top: 0.4rem
+    height: 30px ! important;
+    
+    margin-top: 0.4rem;
+   background-color: #e60000;
+    border-radius: 5px;
 }
 
 

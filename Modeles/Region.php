@@ -51,7 +51,7 @@ class Region extends lib{
        
            $row = "";
         try {
-            $query = "SELECT * FROM $this->table where $this->table.$id='$id' ORDER BY $this->table.$id ASC ";
+            $query = "SELECT * FROM $this->table where id_$this->table='$id' ORDER BY id_$this->table ASC ";
             
             if (!$result = $this->con->select($query)) {
                 throw new Exception("ERROR QYERY NOT EXCUTED");
@@ -76,7 +76,7 @@ class Region extends lib{
        
            $row = "";
         try {
-            $query = "SELECT * FROM $this->table where $this->table.$id = $cond ORDER BY $this->table.$id ASC ";
+            $query = "SELECT * FROM $this->table where $this->table.$id = $cond ORDER BY id_$this->table ASC ";
             
             if (!$result = $this->con->select($query)) {
                 throw new Exception("ERROR QYERY NOT EXCUTED");

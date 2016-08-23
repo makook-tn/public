@@ -51,8 +51,8 @@ class Annonce extends lib {
 
         $row = "";
         try {
-            $query = "SELECT * FROM $this->table  WHERE $this->table.$id=$id";
-            var_dump($query);
+            $query = "SELECT * FROM $this->table  WHERE id_$this->table=$id";
+            //var_dump($query);
 
             if (!$result = $this->con->select($query)) {
                 throw new Exception("ERROR QYERY NOT EXCUTED");

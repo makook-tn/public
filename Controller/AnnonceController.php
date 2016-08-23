@@ -5,10 +5,20 @@
  *
  * @author Eya  Nextweb
  */
-if(!empty($_POST)){
+
 include '../Modeles/autoloader.php';
 error_reporting();
+if(!empty($_POST)){
+
 $Annonce=new Add($_POST, 'annonce');
+}
+if( !empty($_GET)&& isset($_GET['id_annonce']) )
+{
+ $annonce= new Annonce('annonce') ;
+ $uneannonce= $annonce->getAnnonceById($_GET['id_annonce']);
+            
+
+ return $uneannonce;
 }
 
 /* 
