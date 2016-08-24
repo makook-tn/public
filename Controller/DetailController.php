@@ -9,6 +9,7 @@ include '../Modeles/autoloader.php';
 error_reporting();
  $annonce= new Annonce('annonce') ;
  $region= new Region('region');
+ $gov= new Gouvernorat('gouvernorat');
  $sousCategorie= new SousCategorie('souscategorie');
  $categorie = new Categorie('categorie_annonce');
  //global $uneannonce;
@@ -21,9 +22,10 @@ $souscategorie=$sousCategorie->getSousCatByCond('id_souscategorie', $uneannonce[
  
 $unecategorie= $categorie->getCategorieById($souscategorie[0]['id_Categorie']);
   
-   $uneregion= $region->getRegionById($uneannonce[0]['id_region']);
+$uneregion= $region->getRegionById($uneannonce[0]['id_region']);
  
-
+ $gouvernorat= $gov->getGouvernoratById($uneregion[0]['id_gov']);
+ 
 
 include '../Views/detail-annonce.php';
 

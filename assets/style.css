@@ -16,7 +16,22 @@
   color: #e60000;
   float:right;
 }
- 
+
+ /* 1*/
+/* position et float 
+/* ========================================================================== */
+/* Isotope Filtering */
+.float-left{
+    float:left !important;
+}
+.float-right{
+    float:right !important;
+}
+ /* 1*/
+/* header et form login
+/* ========================================================================== */
+/* Isotope Filtering */
+
 
 
 
@@ -383,20 +398,48 @@ padding-left: 7% !important;
 }
 
 /* */
-/* bouttons
+/*   bouttons personnalisés 
 /* ========================================================================== */
 
 .btn-map
 {
     float: right;
     height: 30px ! important;
+    background-color: #e60000;
+    border-radius: 5px;
+    vertical-align: middle;
+    color:#14181c !important;
+}
+.btn-map:hover
+{
     
-    margin-top: 0.4rem;
-   background-color: #e60000;
     border-radius: 5px;
 }
 
-
+.right-buttons {
+    font-size: 8px !important;
+    position: fixed;
+    top: 8.5%;
+    left:82% !important;
+    width: 110px;
+    height: auto;
+    z-index: 999;
+}
+.btn-avis-expert{
+    border-radius: 5px!important;
+    text-decoration:blink !important;
+  
+}
+.btn-avis-expert:hover{
+    border-radius: 5px !important;
+}
+.bloc-expert{
+    margin:50px 50px 50px 200px;
+}
+.btn-contact-user{
+    width:100% !important;
+    margin-bottom:10px !important;
+}
 
 /* */
 /* section region et categorie
@@ -414,21 +457,96 @@ padding-left: 7% !important;
  .region-section h2
  {color: #14181c;}
 /***---------- right-buttons */
-.right-buttons {
-font-size: 8px !important;
-    position: fixed;
-    top: 8.5%;
-    left:82% !important;
- 
-    width: 110px;
-    height: auto;
-    z-index: 999;
-   
 
-}
 
 /* */
-/* liste annonces
+/*  page detail annonces
+/* ========================================================================== */
+.info-annonce{
+    
+}
+.info-annonce h3{
+    display: inline-block !important;
+    vertical-align: middle !important;
+    margin-right: 15px;
+ 
+    font-size: 1em;
+   font-weight: 400;
+    margin: 0 0  15px;
+    
+}
+
+.detail-annonce{
+    margin-top:10px;
+    padding: 10px;
+}
+.date-insertion{
+    font-size: 10px;
+    font-weight:bold;
+ 
+    margin-bottom:10px !important;
+    
+}
+.annonce-description{
+    margin: 10px 0px;
+    
+}
+.annonceur-detail{
+    
+}
+.aside-info-user{
+    
+    width: 100%;
+    padding:10px;
+   box-shadow: 1px 2px 2px 1px rgba(0,0,0,.14);
+    background-color: #f5f6f8
+}
+.user-info{
+        margin-bottom: 10px;
+    margin-top: 5px;
+    vertical-align: top;
+    color: #919191;
+}
+.aside-actions-annonce{
+    width: 100%;
+    padding:10px;
+    margin: 20px 0px;
+    box-shadow: 1px 2px 2px 1px rgba(0,0,0,.14);
+        background-color: #f5f6f8
+}
+.top{
+    
+    padding: 0 8px;
+   /*line-height: 1.;*/
+    color: #7c7c7c;
+    text-align: center;
+    border-bottom: 1px solid rgba(0,0,0,.12);
+}
+.clearfix{
+    clear: both;
+}
+.avatar{
+    text-align: center;
+    font-size:50px;
+   
+   
+}
+.share-action{
+    display:inline-block !important;
+    color :#e60000;
+}
+.sharer-social {
+    display: inline-block;
+    vertical-align: middle;
+}
+.sharer-social .btn{
+    width:30px !important;
+    height: 30px !important;
+    text-align: center !important;
+    padding :5px !important;
+}
+/* */
+/*  page liste annonces
 /* ========================================================================== */
 .list-view-options{
     float:right;
@@ -471,9 +589,11 @@ font-size: 8px !important;
 background-image: "assets/img/drapeau/Alg�rie.jpg";
 
 }
-/**validation **/
+/* */
+/*  Validation des formulaires
+/* ========================================================================== */
 .small_image{
-		    margin-right: 5%;
+    margin-right: 5%;
     width: 20px;
     vertical-align: top;
     top: 25%;

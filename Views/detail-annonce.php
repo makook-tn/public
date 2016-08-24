@@ -81,7 +81,7 @@
                             <a href="#" class="menu-toggle-close btn"><i class="fa fa-times"></i></a>
                             <ul class="nav sf-menu">
                                 <li class="active"><a href="../index.php">Annonces en Tunisie</a> </li>
-                                <li><a href="annonce-listing.php">Liste annonces en tunisie</a></li>
+                                <li><a href="../Views/annonce-listing.php">Liste annonces en tunisie</a></li>
                                 
                 
                                 <li><a href="contact.php">Contact</a></li>
@@ -116,7 +116,7 @@
             
             //include '../Controller/AnnonceController.php'; 
             //include '../Controller/RegionController.php';
-             //var_dump($uneannonce);
+            // var_dump($uneannonce);
         // getRegion($uneannonce[0]['id_region']);
             //var_dump($uneregion);
         }  
@@ -163,42 +163,80 @@
                     <div class="col-lg-4 col-md-5 col-sm-7">
                         
 
-                        <div class="project-details">
-                            <h3 class="block-title"><span>Détail </span></h3>
-                            <dl class="dl-horizontal">
-                                <dt>Annonceur</dt>
-                                <dd>LoremIpsumDolor</dd>
-                                <dt>Mise en ligne </dt>
-                                <dd><?php echo $uneannonce[0]['date_insertion'];?></dd>
-                            </dl>
-                            <h3 class="block-title"><span> voir avis expert</span></h3>
-                            
-                        </div>
+                        <aside class="aside-info-user ">
+                            <div class="top clearfix ">
+                                 
+                                <div class="user-info float-left">
+                                    <span class="icon  "><i class="fa fa-user"></i> </span>
+                                    <strong class="name" itemprop="name"><?php echo $uneannonce[0]['responsable'];?></strong>  
+                                    <div class="region-views"><span itemprop="availableAtOrFrom"><i class="fa fa-map-marker"></i> <?php echo $uneregion[0]['region'];?></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="buttons">
+                                <a   id="view-phone"  href="" class="btn btn-theme btn-contact-user"     >
+                                     <span>Afficher le numéro</span>  
+                               </a>
+                                  <a   id="view-contact" class="btn btn-theme btn-contact-user"    >
+                                      <span>Contacter l'annonceur</span>
+                                </a>
+                             </div>
+                        </aside>
+                          <aside class="aside-actions-annonce " style=" ">
+                           <div class="top">
+                               
+                               <strong  ><span>Gérer votre annonce</span></strong>
+                           </div>
+                            <div class="buttons">
+                                <a href="" class="btn ">
+                                    <span class="icon"><i class="fa fa-pencil"></i> </span>
+                                     <span>Modifier votre annonce</span>  
+                               </a>
+                                  <a   class="btn  ">
+                                      <span class="icon"><i class="fa fa-trash-o"></i> </span>
+                                     <span>Supprimer annonce</span>
+                                </a>
+                             </div>
+                        </aside>
+                        
                        
                     </div>
 
                 </div>
                 <div class="row">
                        <div class="col-lg-8 col-md-7 col-sm-12 project-media">
-                    <div class="project-overview">
+                    <div class="detail-annonce">
                           
                           
-                           <dl class=" ">
-                               
-                                  
-                                 <dd><a href="#"><?php  echo $uneregion[0]['region']  ; ?></a>    <button class=" btn btn-map"  ><i class="fa fa-map-marker"></i></button></dd>
-                            </dl>
+                         
+                        <div class="info-annonce">     
+                        <p class="date-insertion">Mise en ligne le : <?php echo $uneannonce[0]['date_insertion'];?></p> 
+                        <h3><a href="#" ><?php  echo $gouvernorat[0]['governorat']."-". $uneregion[0]['region']  ; ?></a></h3>
+                        <a class=" btn btn-map" ><i class="fa fa-map-marker"></i></a>
+                        </div>   
                            
-                           
-                            <p> <?php echo $uneannonce[0]['description']?>;  </p>
+                        <div class="annonce-description">
+                            <br/> <p> <?php echo $uneannonce[0]['description']?>;  </p>
+                        </div>
+                             
                             
                         </div>
-                    
+                   
                   
-                        <div class="project-details">
+                        <div class="annonce-actions">
+                            <div class="bloc-expert"><a   href="#" class="btn btn-theme btn-avis-expert"  >    <span>Ce que les experts vous conseillent</span> </a></div>  
+                            
+                            
                             <a id="saveAdMobile" href="#" class="btn"  > <i class="fa fa-heart"></i>  <span>Sauvegarder</span> </a>
-                            <a id="shareAdMobile"   class="btn " href="/fr/ghazela/telephones/Samsung-galaxy-s7-neuf-import%C3%A9_5009614.htm"><i class="fa fa-share-alt"></i>  <span>Partager</span> </a>
-                            <a id="reportAdMobile"   class="btn " href="/fr/ghazela/telephones/Samsung-galaxy-s7-neuf-import%C3%A9_5009614.htm"><i class="fa fa-exclamation-triangle"></i>  <span>Signaler</span> </a>
+                            <a id="reportAdMobile"   class="btn " href="#"><i class="fa fa-exclamation-triangle"></i>  <span>Signaler</span> </a>
+                            <span class="btn share-action" href="#"><i class="fa fa-share-alt"></i>  <span>Partager</span> </span>
+                            <div class="sharer-social">
+				<a href="#" class="btn btn-theme   facebook"><i class="fa fa-facebook"></i></a>
+				 <a href="#" class="btn btn-theme   google"><i class="fa fa-google"></i> </a>
+                                 <a href="#" class="btn btn-theme   google"><i class="fa fa-envelope"></i> </a>
+						 
+			</div>
+                            
                         </div>
                     </div>
                     

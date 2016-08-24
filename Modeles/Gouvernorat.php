@@ -52,8 +52,8 @@ class Gouvernorat extends lib{
        
            $row = "";
         try {
-            $query = "SELECT * FROM $this->table  where `id_gov`='$id' ORDER BY $this->table.$id ASC ";
-            //echo "Display".$this->table.$query;
+            $query = "SELECT * FROM $this->table  where id_gov=$id ORDER BY $this->table.id_gov ASC ";
+            
             if (!$result = $this->con->select($query)) {
                 throw new Exception("ERROR QYERY NOT EXCUTED");
             } else {
