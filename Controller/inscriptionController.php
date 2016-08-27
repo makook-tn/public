@@ -4,20 +4,25 @@
  *
  * @author Eya  Nextweb
  */
-error_reporting();
+error_reporting(E_ALL);
+include 'init/init.php';
 $client_id = '347426381041-9vhc4g0en5ktio2ai791dk29r8n1p4vm.apps.googleusercontent.com';
 $client_secret = 'G4O8dSPcBgJC_M2hfGeWMpZy';
-$redirect_uri = 'http://www.makook.tn/eya/Public/v4/inscription/';
+ 
+$redirect_uri = ROOT.'inscription/';
 
 
 
-include 'init/init.php';
 
-require '../include/init.php';
+
+
+//require '../include/init.php';
 //require  '../Controller/config.php';
+
 require 'session.php';
 
-include '../Modeles/autoloader.php';
+
+//include '../Modeles/autoloader.php';
 
 require_once ('libraries/Google/autoload.php');
 
@@ -30,7 +35,7 @@ require_once ('libraries/Google/autoload.php');
  if (isset($_GET['logout'])) {
         unset($_SESSION['access_token']);
         session_destroy();
-        session_destroy();
+       
     }
 if(!empty($_SESSION['login'])){
   

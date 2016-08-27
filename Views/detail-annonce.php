@@ -37,10 +37,14 @@
     <script src="assets/plugins/iesupport/html5shiv.js"></script>
     <script src="assets/plugins/iesupport/respond.min.js"></script>
     <![endif]-->
-
+  
+    <script type="text/javascript">
+  
+   
+    </script>
 </head>
 <body id="home" class="wide">
-<!-- PRELOADER -->
+<!-- PRELOADER 
 <div id="preloader">
     <div id="preloader-status">
         <div class="spinner">
@@ -65,7 +69,7 @@
 
                 <!-- Logo -->
                 <div class="logo">
-                    <a href="index.html"><img src="../assets/img/logo-rentit.png" alt="Rent It"/></a>
+                    <a href="../index.php"><img src="../assets/img/logo-rentit.png" alt="Rent It"/></a>
                 </div>
                 <!-- /Logo -->
 
@@ -110,6 +114,8 @@
 
     <!-- CONTENT AREA -->
     <div class="content-area">
+         
+        
   <?php 
    
         if (isset($_GET["id_annonce"])) {
@@ -188,7 +194,7 @@
                                <strong  ><span>Gérer votre annonce</span></strong>
                            </div>
                             <div class="buttons">
-                                <a href="" class="btn ">
+                                <a   class="btn " onclick="editAnnonce(<?php echo $uneannonce[0]['id_annonce'];?>)">
                                     <span class="icon"><i class="fa fa-pencil"></i> </span>
                                      <span>Modifier votre annonce</span>  
                                </a>
@@ -196,12 +202,15 @@
                                       <span class="icon"><i class="fa fa-trash-o"></i> </span>
                                      <span>Supprimer annonce</span>
                                 </a>
+                                
+                                 
+                                <div id="myModal" class="modal"></div>
                              </div>
                         </aside>
                         
                        
                     </div>
-
+                
                 </div>
                 <div class="row">
                        <div class="col-lg-8 col-md-7 col-sm-12 project-media">
@@ -211,8 +220,15 @@
                          
                         <div class="info-annonce">     
                         <p class="date-insertion">Mise en ligne le : <?php echo $uneannonce[0]['date_insertion'];?></p> 
-                        <h3><a href="#" ><?php  echo $gouvernorat[0]['governorat']."-". $uneregion[0]['region']  ; ?></a></h3>
-                        <a class=" btn btn-map" ><i class="fa fa-map-marker"></i></a>
+                        <table style="width: 100%;"> 
+                            <tr> 
+                                <td style ="vertical-align: bottom !important;width: 50%;"> <a href="#" ><?php  echo $gouvernorat[0]['governorat']."-". $uneregion[0]['region']  ; ?></a></td> 
+                                <td style="float:right;width: 50%;"><a class=" btn btn-map" ><i class="fa fa-map-marker"></i></a></td>
+                            
+                            </tr>
+                        </table>
+                        
+                        
                         </div>   
                            
                         <div class="annonce-description">
@@ -371,7 +387,7 @@
                             <div class="media">
                                 <div class="media-left">
                                     <a href="#">
-                                        <img class="media-object testimonial-avatar" src="assets/img/preview/avatars/testimonial-140x140x1.jpg" alt="Testimonial avatar">
+                                        <img class="media-object testimonial-avatar" src="../assets/img/preview/avatars/testimonial-140x140x1.jpg" alt="Testimonial avatar">
                                     </a>
                                 </div>
                                 <div class="media-body">

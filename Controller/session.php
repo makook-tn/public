@@ -5,14 +5,15 @@
  * @author Eya  Nextweb
  */
 //echo "session";
-error_reporting(0);
-session_start();
+error_reporting();
 
+session_start();
 if(isset($_GET['id']))
 {
+	var_dump($_GET);
     $_SESSION['login']="";
-require ("../Modeles/autoloader.php");
-require ("../Modeles/UsersPDO.php");
+
+
 $userProfile[]=@$_GET;
 //var_dump($expression)
 $gUser = new UsersPDO('clients');

@@ -1,3 +1,9 @@
 <?php 
-define("ROOT", "http://www.makook.tn/eya/Public/v4/");
+include '../Modeles/autoloader.php';
+$setting=new Setting('setting');
+$settings=$setting->getData();
+//var_dump($settings);
+$urlname=$settings['0']['urlname'];
+define("ROOT", $urlname);
+
 

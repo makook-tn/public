@@ -12,7 +12,7 @@
 
                             FB.getLoginStatus(function (response) {
                                 if (response.status === 'connected') {
-                                    document.getElementById('themeConfig').style.visibility = 'hidden';
+                                    //document.getElementById('themeConfig').style.visibility = 'hidden';
 
                                     //document.getElementById('login').style.visibility = 'hidden';
                                 } else if (response.status === 'not_authorized') {

@@ -135,6 +135,33 @@ class Annonce extends lib {
         return $stmt->fetchAll();
     }
     
+        function updatedata($data,$id) {
+        $som="";
+        foreach ($data as $key => $value) {
+            
+         $arkey[]=$key;
+           $arvalue[]=$value;
+          
+                                                }
+                                               
+                                                
+      // echo $tabKeys=  implode( ',',$arkey)  ; 
+        //echo $tabvalue=  '"'.implode( '","',$arvalue).'"'  ;  
+        for ($index = 0; $index < count($arkey)-1; $index++) {
+           $som.="`".$arkey[$index]."`='".$arvalue[$index]."',";
+        }
+        $som.="`".$arkey[$index]."`='".$arvalue[$index]."'";
+        var_dump($som);
+       $query='UPDATE `'.$this->table.'` SET '.$som.' where `id_annonce`='.$id;
+        echo $query;
+        $result=$this->con->select($query);
+        
+        return $result;
+        
+        
+    }
+    
+    
     function get_exctract($chaine,$nbcaractere)
     {
         $extrait= substr($chaine,0,$nbcaractere);

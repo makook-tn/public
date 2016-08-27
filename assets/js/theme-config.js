@@ -86,8 +86,22 @@ var themeConfig = {
     initialize: function () {
         var $this = this;
         if (this.init) return;
+        
+         var path=$(location).attr('pathname').toString();
 
-        $('head').append($('<link rel="stylesheet">').attr('href', 'assets/js/theme-config.css'));
+       // $('head').append($('<link rel="stylesheet">').attr('href', 'assets/js/theme-config.css'));
+        
+         if ( path.indexOf('index')!== -1 || path ==='/makook/public/'  )
+ {
+      
+     $('head').append($('<link rel="stylesheet">').attr('href', 'assets/js/theme-config.css'));
+ }
+     else
+ {
+      
+     $('head').append($('<link rel="stylesheet">').attr('href', '../assets/js/theme-config.css'));
+ }
+        
         $this.build();
         $this.events();
 
