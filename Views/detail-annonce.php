@@ -198,7 +198,7 @@
                                     <span class="icon"><i class="fa fa-pencil"></i> </span>
                                      <span>Modifier votre annonce</span>  
                                </a>
-                                  <a   class="btn  ">
+                                  <a   class="btn " onclick="supprimerAnnonce(<?php echo $uneannonce[0]['id_annonce'];?>)">
                                       <span class="icon"><i class="fa fa-trash-o"></i> </span>
                                      <span>Supprimer annonce</span>
                                 </a>

@@ -1,5 +1,5 @@
 <?php 
-include '../Modeles/autoloader.php';
+include_once '../Modeles/autoloader.php';
 $setting=new Setting('setting');
 $settings=$setting->getData();
 //var_dump($settings);

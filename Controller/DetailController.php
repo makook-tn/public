@@ -1,11 +1,8 @@
 
-
 <?php
- echo 'poooooooooooooost ';
- var_dump($_POST);
-   
-   
-  echo 'geeeeeeeeeeeeeeeeeeeeeeet'  ;
+
+ //r_dump($_POST);
+  
   //var_dump($_GET);
 /* 
  * To change this license header, choose License Headers in Project Properties.
@@ -13,6 +10,7 @@
  * and open the template in the editor.
  */
 include '../Modeles/autoloader.php';
+include '../Controller/init/init.php';
 error_reporting();
  $_SESSION['login']="sarra"; 
 
@@ -21,7 +19,8 @@ error_reporting();
  $gov= new Gouvernorat('gouvernorat');
  $sousCategorie= new SousCategorie('souscategorie');
  $categorie = new Categorie('categorie_annonce');
- 
+ $url=ROOT;
+ var_dump($url);
  //global $uneannonce;
 if( isset($_GET) && isset($_GET['id_annonce']) && (!empty($_GET))  )
 {
@@ -30,9 +29,6 @@ if( isset($_GET) && isset($_GET['id_annonce']) && (!empty($_GET))  )
     
    $uneannonce= $annonce->getAnnonceById($_GET['id_annonce']);
    $souscategorie=$sousCategorie->getSousCatByCond('id_souscategorie', $uneannonce[0]['id_sousCategorie']);
- 
-  
-  
  
 $unecategorie= $categorie->getCategorieById($souscategorie[0]['id_Categorie']);
   
@@ -46,15 +42,40 @@ $uneregion= $region->getRegionById($uneannonce[0]['id_region']);
   {
       
       //var_dump($_GET);
-       echo " get reçu id et action";
+ 
     
       
             $action=$_GET['action'];
             $id=@$_GET['id_annonce'];
+            $jsdata = array(
+                'id' => $id,
+                 'url' => $url,
+                       
+    );
             
 if($action=='deleteAnnonce'){
     
-    
+        echo "
+    <div class='modal-dialog'>
+        <div class='modal-content'>
+            <div class='modal-header'>
+                
+                <h4 class='modal-title'>Suppression  annonce</h4>
+            </div>
+           
+            <div class='modal-body'>
+               
+               <div id='success' class='uk-alert-success' ></div>
+                <h2>voulez vous supprimer cette annonce ?</h2>
+             
+                </div;
+              <div class='modal-footer'>
+                <button type='button' class='btn btn-default' data-dismiss='modal' id='cancel' name='cancel' onclick='annonceClose()' >Fermer</button>
+                <button type='button' class='btn btn-primary' id='save' name='save' onclick='deleteAnnonce($id)'>Confirmer</button>
+            </div>
+          </div>             
+    </div>";
+                 
 }
             
 elseif($action=='editAnnonce'){
@@ -88,12 +109,12 @@ elseif($action=='editAnnonce'){
                  </div>
                  <div class='form-group right-addon inner-addon '>
                       <label>Categorie: </label>
-                      <input class='form-control disabled'  id='categorie' type='text'  required='required'  value='{$unecategorie['0']['titre']}' name='categorie'> 
+                      <input class='form-control disabled'  id='categorie' type='text'  required='required'  value='{$unecategorie['0']['titre']}'  > 
                        <span class='md-input-bar '> </span>
                  </div>
                  <div class='form-group right-addon inner-addon '>
                       <label> Sous Categorie: </label>
-                      <input class='form-control disabled'  id='sousCategorie' type='text'  required='required' value='{$souscategorie['0']['titre']}' name='sousCategorie'> 
+                      <input class='form-control disabled'  id='sousCategorie' type='text'  required='required' value='{$souscategorie['0']['titre']}'  > 
                        <span class='md-input-bar '> </span>
                  </div>";
 
@@ -107,7 +128,7 @@ elseif($action=='editAnnonce'){
                             echo "<div class='form-group  right-addon inner-addon '> 
                                      <label>{$valeur}</label>
                      
-                                     <input type='text' id='$valeur' class='form-control' value='{$uneannonce['0']['Val_'.$i]}'' name='$valeur'  >
+                                     <input type='text' id='$valeur' class='form-control' value='{$uneannonce['0']['Val_'.$i]}' name='Val.$i'  >
                                      <span class='md-input-bar '></span> 
                                     </div>";
                          }
@@ -150,7 +171,9 @@ elseif($action=='editAnnonce'){
         if( isset($_POST)&& isset($_POST['id_annonce'] ) )
         {
          //  var_dump($_POST);
- 
+          $annonce=new Annonce('annonce');
+            
+            
                 $id=$_POST['id_annonce'];
            $uneannonce= $annonce->getAnnonceById($_POST['id_annonce']);
            $souscategorie=$sousCategorie->getSousCatByCond('id_souscategorie', $uneannonce[0]['id_sousCategorie']);
@@ -166,26 +189,39 @@ elseif($action=='editAnnonce'){
 
                      $data=$_POST;
                   var_dump($data);
-                  $update=new Annonce('annonce');
-                  $updates=$update->updatedata($data, $id);
+                  
+                 // $updates=$annonce->updatedata($data, $id);
          
         }
 
-        if (isset($_POST['id_annonce']) && isset($_POST['save'])) 
+        if (isset($_POST['id_annonce']) && isset($_POST['action'])) 
          {
 
-            echo "tayyyyyyyyyyyyyyy";
-                 /*   //$action=$_POST['action'];
+          
+                   $action=$_POST['action'];
                     $id=@$_POST['id_annonce'];
-            
+                    
+                    var_dump($action);
+            if ($action=='save')
                    
-                  $data['titre']=$_POST['titre'];
-                  $data['description']=$_POST['description'];*/
+                  
+                  {
+                echo 'saaaaaaaaaave';
+                  //$data['titre']=$_POST['titre'];
+                //  $data['description']=$_POST['description'];
+                  }
+            else
+                  {
+                //action delete 
+                  echo 'delete';
+                $annonce->deletedata($id);
+               var_dump($url.'/Views/monprofile.php')  ;
+                 header('Location:' .$url.'/Views/monprofile.php');
+                exit();
+                
+                  }
 
-
-
-
-              
+  
          }
 
  //if (count($_GET)==1)
@@ -218,51 +254,58 @@ elseif($action=='editAnnonce'){
            // window.close();
          
        }
+       
+              function deleteAnnonce(id,url){
+                  
+      // alert(id + url);
+           
+ 
+             //var dataString  = $('#form-edit-annonce').serialize();
+            //alert (dataString);
+             // AJAX code to submit form.
+             var dataString = { 'id_annonce': id , 'action': 'delete'};
+             alert (dataString);
+             $.ajax({
+             type: "POST",
+             url: "DetailController.php",
+             data: dataString,
+            
+             success: function(response) {
+           //alert(response);
+             },
+             error:function(){
+                 //alert ("errooooooooooooooooooooor");
+             }
+             });
+             document.getElementById("myModal").style.display = 'none';
+             //alert(document.location.pathname);
+         document.location.href=  'http://localhost/makook/public'+'/Views/monprofile.php';
+             }
+             
+             
        function updateAnnonce(){
       // alert("update");
            
-           //  var titre = document.getElementById("titreAnnonce").value;
-            // var id = document.getElementById("idAnnonce").value;
-            // var description = document.getElementById("descriptionAnnonce").value;
-             // Returns successful data submission message when the entered information is stored in database.
-            //var dataString = 'id_annonce=' + id + '&titre=' + titre + '&description=' + description +'&action=save';
-           
-             var dataString  = $('#form-edit-annonce').serialize();
+ 
+             //var dataString  = $('#form-edit-annonce').serialize();
             //alert (dataString);
              // AJAX code to submit form.
              $.ajax({
              type: "POST",
              url: "DetailController.php",
              data: $('#form-edit-annonce').serialize(),
-              
+            
              success: function(response) {
            //alert(response);
              },
              error:function(){
-                 alert ("errooooooooooooooooooooor");
+                 //alert ("errooooooooooooooooooooor");
              }
              });
              document.getElementById("myModal").style.display = 'none';
+             window.location.reload();
              }
-               
-        //  var titre = $('#titreAnnonce').val();
-         // var id=$('#idAnnonce').val();
-         
           
-         /* 
-          if (window.XMLHttpRequest) {
-            // code for IE7+, Firefox, Chrome, Opera, Safari
-            xmlhttp = new XMLHttpRequest();
-        } else {
-            // code for IE6, IE5
-            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-        }
-        xmlhttp.open("POST", "../Controller/DetailController.php?id_annonce="+id+"&action=save", true);
-        xmlhttp.send();
-        document.getElementById("#myModal").style.display = 'none';
-          
-        
-        }*/
        
             function editAnnonce(id){
          ///  alert(id);
@@ -285,5 +328,27 @@ elseif($action=='editAnnonce'){
         xmlhttp.send();
 
     }
+    
+             function supprimerAnnonce(id){
+         //  alert(id);
+             
+                  if (window.XMLHttpRequest) {
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            // code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                document.getElementById("myModal").style.display = 'block';
+                document.getElementById("myModal").innerHTML = xmlhttp.responseText;
+            }
+        };
+      //  xmlhttp.open("POST", "../Controller/DetailController.php?id_annonce="+id+"&action=editAnnonce", true);
+        xmlhttp.open("POST", "../Controller/DetailController.php?id_annonce="+id+"&action=deleteAnnonce&affiche=yes" , true);
+        xmlhttp.send();
+
+             }
     
     </script>

@@ -141,8 +141,7 @@ class Annonce extends lib {
             
          $arkey[]=$key;
            $arvalue[]=$value;
-          
-                                                }
+       }
                                                
                                                 
       // echo $tabKeys=  implode( ',',$arkey)  ; 
@@ -157,6 +156,20 @@ class Annonce extends lib {
         $result=$this->con->select($query);
         
         return $result;
+        
+        
+    }
+    
+    
+         function deletedata($id) {
+        
+         
+        $query="DELETE FROM `$this->table` where `id_annonce`=$id ";
+        var_dump($query) ;
+        $result=$this->con->select($query);
+        
+        return $result;
+        
         
         
     }
