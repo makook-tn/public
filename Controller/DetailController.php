@@ -22,10 +22,10 @@ error_reporting();
  $sousCategorie= new SousCategorie('souscategorie');
  $categorie = new Categorie('categorie_annonce');
  
- //global $uneannonce;
+ 
 if( isset($_GET) && isset($_GET['id_annonce']) && (!empty($_GET))  )
 {
-   echo " get reçu";
+   
     
     
    $uneannonce= $annonce->getAnnonceById($_GET['id_annonce']);
@@ -45,8 +45,7 @@ $uneregion= $region->getRegionById($uneannonce[0]['id_region']);
   if (isset($_GET['id_annonce']) && isset($_GET['action'])) 
   {
       
-      //var_dump($_GET);
-       echo " get reçu id et action";
+       
     
       
             $action=$_GET['action'];
@@ -88,12 +87,14 @@ elseif($action=='editAnnonce'){
                  </div>
                  <div class='form-group right-addon inner-addon '>
                       <label>Categorie: </label>
-                      <input class='form-control disabled'  id='categorie' type='text'  required='required'  value='{$unecategorie['0']['titre']}' name='categorie'> 
+                      <input type='hidden' id='id_categorie' value='{$unecategorie['0']['id_categorie']}'  />
+                      <input class='form-control disabled'  id='categorie' type='text'  required='required'  value='{$unecategorie['0']['titre']}'  '> 
                        <span class='md-input-bar '> </span>
                  </div>
                  <div class='form-group right-addon inner-addon '>
                       <label> Sous Categorie: </label>
-                      <input class='form-control disabled'  id='sousCategorie' type='text'  required='required' value='{$souscategorie['0']['titre']}' name='sousCategorie'> 
+                      <input type='hidden' id='id_souscategorie' value='{$souscategorie['0']['id_souscategorie']}' name='id_souscategorie' />
+                      <input class='form-control disabled'  id='sousCategorie' type='text'  required='required'  value='{$souscategorie['0']['titre']}'  ></input> 
                        <span class='md-input-bar '> </span>
                  </div>";
 
@@ -101,13 +102,15 @@ elseif($action=='editAnnonce'){
 
                   foreach ($souscategorie[0] as $i => $valeur) {
                    if (strpos($i, 'Critere') === 0) {
-                      
+                  
+                    
+                       
                          if ($valeur !== '') {
-                          //echo $valeur;
+                         
                             echo "<div class='form-group  right-addon inner-addon '> 
                                      <label>{$valeur}</label>
                      
-                                     <input type='text' id='$valeur' class='form-control' value='{$uneannonce['0']['Val_'.$i]}'' name='$valeur'  >
+                                     <input type='text' id='$valeur' class='form-control' value='{$uneannonce['0']['Val_'.$i]}' name='Val.$i' >
                                      <span class='md-input-bar '></span> 
                                     </div>";
                          }
@@ -130,20 +133,9 @@ elseif($action=='editAnnonce'){
     
  ";
  
-      /* <div class="form-group right-addon inner-addon ">
-
-                                    <input class="form-control " id="titreAnnonce" type="text" placeholder=" Titre annonce" required="required" name="titre"></div>
-                            </div>
-    */
+     
 }
-      /*  elseif($action=='save'){
-            $data['titre']=$_GET['titre'];
-            $update=new Annonce('annonce');
-            $updates=$update->updatedata($data, $id);
-
-
-
-        }*/
+      
           }
          
 
@@ -155,7 +147,7 @@ elseif($action=='editAnnonce'){
            $uneannonce= $annonce->getAnnonceById($_POST['id_annonce']);
            $souscategorie=$sousCategorie->getSousCatByCond('id_souscategorie', $uneannonce[0]['id_sousCategorie']);
 
-
+ var_dump($souscategorie);
 
 
         $unecategorie= $categorie->getCategorieById($souscategorie[0]['id_Categorie']);
@@ -165,7 +157,7 @@ elseif($action=='editAnnonce'){
          $gouvernorat= $gov->getGouvernoratById($uneregion[0]['id_gov']);
 
                      $data=$_POST;
-                  var_dump($data);
+                 
                   $update=new Annonce('annonce');
                   $updates=$update->updatedata($data, $id);
          
@@ -174,7 +166,7 @@ elseif($action=='editAnnonce'){
         if (isset($_POST['id_annonce']) && isset($_POST['save'])) 
          {
 
-            echo "tayyyyyyyyyyyyyyy";
+        
                  /*   //$action=$_POST['action'];
                     $id=@$_POST['id_annonce'];
             
@@ -188,7 +180,7 @@ elseif($action=='editAnnonce'){
               
          }
 
- //if (count($_GET)==1)
+ // pour ne pas inclure detail annonce quand on affiche le popup
      if ((!isset($_GET['affiche']))|| (!empty($_POST)))
           {include '../Views/detail-annonce.php';}
 ?>
@@ -243,26 +235,21 @@ elseif($action=='editAnnonce'){
              }
              });
              document.getElementById("myModal").style.display = 'none';
+            window.close();
+             window.location.reload(true);
+           
+             // window.opener.location.reload(true);
+            //   window.onunload = refreshParent;
+  
+             // window.close();
              }
+             
+               function refreshParent() {
+                   alert ();
+        window.opener.location.reload();
+    }
                
-        //  var titre = $('#titreAnnonce').val();
-         // var id=$('#idAnnonce').val();
-         
-          
-         /* 
-          if (window.XMLHttpRequest) {
-            // code for IE7+, Firefox, Chrome, Opera, Safari
-            xmlhttp = new XMLHttpRequest();
-        } else {
-            // code for IE6, IE5
-            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-        }
-        xmlhttp.open("POST", "../Controller/DetailController.php?id_annonce="+id+"&action=save", true);
-        xmlhttp.send();
-        document.getElementById("#myModal").style.display = 'none';
-          
-        
-        }*/
+      
        
             function editAnnonce(id){
          ///  alert(id);
