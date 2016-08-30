@@ -152,9 +152,9 @@ class Annonce extends lib {
         $som.="`".$arkey[$index]."`='".$arvalue[$index]."'";
         var_dump($som);
        $query='UPDATE `'.$this->table.'` SET '.$som.' where `id_annonce`='.$id;
-        echo $query;
+       //var_dump($query);
         $result=$this->con->select($query);
-        
+        var_dump($result);
         return $result;
         
         

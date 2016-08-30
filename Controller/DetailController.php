@@ -20,21 +20,22 @@ error_reporting();
  $sousCategorie= new SousCategorie('souscategorie');
  $categorie = new Categorie('categorie_annonce');
  $url=ROOT;
- var_dump($url);
+ //var_dump($url);
  //global $uneannonce;
 if( isset($_GET) && isset($_GET['id_annonce']) && (!empty($_GET))  )
 {
    
-    
+  //  var_dump($_GET);
     
    $uneannonce= $annonce->getAnnonceById($_GET['id_annonce']);
    $souscategorie=$sousCategorie->getSousCatByCond('id_souscategorie', $uneannonce[0]['id_sousCategorie']);
  
 $unecategorie= $categorie->getCategorieById($souscategorie[0]['id_Categorie']);
-  
+  //var_dump($gouvernorat);
 $uneregion= $region->getRegionById($uneannonce[0]['id_region']);
- 
+// var_dump($uneregion);
  $gouvernorat= $gov->getGouvernoratById($uneregion[0]['id_gov']);
+ //var_dump($gouvernorat);
   
 }
 
@@ -165,9 +166,7 @@ elseif($action=='editAnnonce'){
         {
          //  var_dump($_POST);
           $annonce=new Annonce('annonce');
-            
-            
-                $id=$_POST['id_annonce'];
+          $id=$_POST['id_annonce'];
            $uneannonce= $annonce->getAnnonceById($_POST['id_annonce']);
            $souscategorie=$sousCategorie->getSousCatByCond('id_souscategorie', $uneannonce[0]['id_sousCategorie']);
 
@@ -180,27 +179,27 @@ elseif($action=='editAnnonce'){
 
          $gouvernorat= $gov->getGouvernoratById($uneregion[0]['id_gov']);
 
-                     $data=$_POST;
-                 
-                  
+                   
          
         }
 
         if (isset($_POST['id_annonce']) && isset($_POST['action'])) 
          {
-
-        
-                
-                    $id=@$_POST['id_annonce'];
                     
+                var_dump($_POST);
+            
+                    $id=@$_POST['id_annonce'];
+                    $action=$_POST['action'];
                     var_dump($action);
+                    
             if ($action=='save')
                    
                   
                   {
                 echo 'saaaaaaaaaave';
-                  //$data['titre']=$_POST['titre'];
-                //  $data['description']=$_POST['description'];
+               unset($_POST['action']);
+            var_dump($_POST);
+            $updates=$annonce->updatedata($_POST, $id);
                   }
             else
                   {
@@ -276,26 +275,29 @@ elseif($action=='editAnnonce'){
              
              
        function updateAnnonce(){
-      // alert("update");
+     // alert("update");
            
- 
+ alert($('#form-edit-annonce').serialize()+'&action=save');
              //var dataString  = $('#form-edit-annonce').serialize();
             //alert (dataString);
              // AJAX code to submit form.
              $.ajax({
              type: "POST",
              url: "DetailController.php",
-             data: $('#form-edit-annonce').serialize(),
-            
-             success: function(response) {
+             data: $('#form-edit-annonce').serialize()+'&action=save',
+          
+             success: function(data) {
            //alert(response);
+              document.getElementById("myModal").style.display = 'none';
+               window.location.reload(true);
              },
              error:function(){
                  //alert ("errooooooooooooooooooooor");
              }
              });
-             document.getElementById("myModal").style.display = 'none';
-             window.location.reload();
+          
+             //location.refresh(true);
+            
              }
           
        

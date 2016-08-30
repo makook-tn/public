@@ -70,7 +70,9 @@ class Database extends PDO {
             // ou 
             // $this->con = parent::rollBack(); 
          //   var_dump($result);
+            
             return $result;
+            
         } catch (Exception $e) {
             //On indique par email que la requête n'a pas fonctionné. 
             error_log(date('D/m/y') . ' à ' . date("H:i:s") . ' : ' . $e->getMessage(), 1, 'artotal@gmail.com');
