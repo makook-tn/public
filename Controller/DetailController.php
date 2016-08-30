@@ -18,6 +18,8 @@ error_reporting();
  $region= new Region('region');
  $gov= new Gouvernorat('gouvernorat');
  $sousCategorie= new SousCategorie('souscategorie');
+ $image = new Image('images_annonces');
+ 
  $categorie = new Categorie('categorie_annonce');
  $url=ROOT;
  //var_dump($url);
@@ -36,7 +38,9 @@ $uneregion= $region->getRegionById($uneannonce[0]['id_region']);
 // var_dump($uneregion);
  $gouvernorat= $gov->getGouvernoratById($uneregion[0]['id_gov']);
  //var_dump($gouvernorat);
-  
+  $images = $image->getImageAnnonceById($_GET['id_annonce']);
+  //var_dump($images);
+ // var_dump(count($images));
 }
 
   if (isset($_GET['id_annonce']) && isset($_GET['action'])) 

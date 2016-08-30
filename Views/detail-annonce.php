@@ -119,6 +119,9 @@
   <?php 
    
         if (isset($_GET["id_annonce"])) {
+          //  var_dump($uneannonce[0]);
+            
+            
             
             //include '../Controller/AnnonceController.php'; 
             //include '../Controller/RegionController.php';
@@ -144,7 +147,7 @@
 
         <!-- PAGE WITH SIDEBAR -->
         <section class="page-section sub-page">
-            <div class="container">
+            <div class="container container-details-annonce">
 
                 <div class="row">
                     <div class="col-lg-8 col-md-7 col-sm-12 project-media">
@@ -159,9 +162,43 @@
                                    <span class="star"></span>
                               </div>
                         <div class="img-carousel">
-                            <div><img src="../assets/img/preview/portfolio/portfolio-x6.jpg" alt=""/></div>
-                            <div><img src="../assets/img/preview/portfolio/portfolio-x7.jpg" alt=""/></div>
-                            <div><img src="../assets/img/preview/portfolio/portfolio-x8.jpg" alt=""/></div>
+                            
+                                 <?php
+                            if (isset($images) && !empty($images)) {
+                             
+                                
+
+                               for ($i=0; $i< count($images);$i++)
+                               { 
+                                   var_dump($images[$i]['src']);
+                                   
+                                   $imagesrc='../assets/upload/'.$images[$i]['src'];
+                                   var_dump($imagesrc);
+                                    if (file_exists($imagesrc)) {
+                                       
+                                        
+                                         
+                                       echo "<div><img src='.$imagesrc.' alt=''/></div>";
+                                     // echo "<div><img src='../assets/upload/terrain-hammamet.jpg' alt=''/></div>";
+                                  
+                                    }
+                                    else 
+                                    {
+                                         echo "<div><img src='../assets/upload/default.jpg' alt=''/></div>";
+                                          
+                                    }
+                                    
+                                }
+                             
+                            }
+                            else
+                            {  
+                                echo "<div><img src='../assets/upload/default.jpg' alt=''/></div>";
+                                
+                            }
+                            ?>  
+                            
+                             
                         </div>
                     </div>
                    
@@ -216,7 +253,30 @@
                        <div class="col-lg-8 col-md-7 col-sm-12 project-media">
                     <div class="detail-annonce">
                           
+                        <div class="critere-info-annonce">
                           
+                            <?php
+                            if (isset($souscategorie[0])) {
+                                echo " <ul class='item-summary'>";
+
+
+                                foreach ($souscategorie[0] as $i => $valeur) {
+                                    if (strpos($i, 'Critere') === 0) {
+                                       
+ 
+                                        if ($valeur !== '' ) {
+                                            
+                                            if (($uneannonce['0']['Val_' . $i]) !==Null && (strlen($uneannonce['0']['Val_' . $i])> 0))
+
+                                            { 
+                                                echo "  <li>$valeur <strong> {$uneannonce['0']['Val_' . $i]}</strong></li>";}
+                                        }
+                                    }
+                                }
+                                echo "</ul>";
+                            }
+                            ?>    
+                          </div>
                          
                         <div class="info-annonce">     
                         <p class="date-insertion">Mise en ligne le : <?php echo $uneannonce[0]['date_insertion'];?></p> 
@@ -500,7 +560,8 @@
 <script src="../assets/plugins/bootstrap-select/js/bootstrap-select.min.js"></script>
 <script src="../assets/plugins/superfish/js/superfish.min.js"></script>
 <script src="../assets/plugins/prettyphoto/js/jquery.prettyPhoto.js"></script>
-<script src="../assets/plugins/owl-carousel2/owl.carousel.min.js"></script>
+
+<script src="../assets/plugins/owl-carousel2/owl.carousel.js"></script>
 <script src="../assets/plugins/jquery.sticky.min.js"></script>
 <script src="../assets/plugins/jquery.easing.min.js"></script>
 <script src="../assets/plugins/jquery.smoothscroll.min.js"></script>

@@ -343,7 +343,7 @@ jQuery(document).ready(function () {
         if (imageCarousel.length) {
             imageCarousel.owlCarousel({
                 rtl: true,
-                autoplay: false,
+                autoplay: true,
                 loop: true,
                 margin: 0,
                 dots: true,

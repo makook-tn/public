@@ -549,6 +549,36 @@ padding-left: 7% !important;
     text-align: center !important;
     padding :5px !important;
 }
+container-details-annonce .item-summary{
+    
+}
+.item-summary li {
+    display: inline-block;
+    vertical-align: top;
+    color: #005ea8;
+    text-align: center;
+    font-size: 0.85em;
+    padding: 0 6px 0 2px;
+    border-right: 1px solid #dbdbdb;
+}
+
+.container-details-annonce .item-summary li {
+    font-size: 1em;
+    padding: 0 16px 0 10px;
+}
+.container-details-annonce .item-summary li strong {
+    color: #87D37C;
+    display: block;
+    font-size: 1.5em;
+}
+.item-summary li:first-child {
+    padding-left: 0;
+}
+.item-summary li:last-child {
+    
+    padding-right: 0;
+    border-right: 0
+}
 /* */
 /*  page liste annonces
 /* ========================================================================== */
@@ -608,7 +638,7 @@ background-image: "assets/img/drapeau/Alg�rie.jpg";
 }
 
 /* */
-/*  Validation des formulaires
+/*  modal
 /* ========================================================================== */
  
  .modal-open{overflow:hidden}
