@@ -19,7 +19,7 @@ class Image extends lib {
         $row = "";
         try {
             $query = "SELECT * FROM $this->table WHERE id_annonce=$id";
-            var_dump($query);
+            //var_dump($query);
             if (!$result = $this->con->select($query)) {
                 throw new Exception("ERROR QYERY NOT EXCUTED");
             } else {

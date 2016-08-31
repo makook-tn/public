@@ -14,15 +14,13 @@
 
     <!-- CSS Global -->
     <link href="../assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="../assets/plugins/bootstrap-select/css/bootstrap-select.min.css" rel="stylesheet">
     <link href="../assets/plugins/fontawesome/css/font-awesome.min.css" rel="stylesheet">
     <link href="../assets/plugins/prettyphoto/css/prettyPhoto.css" rel="stylesheet">
-    <link href="../assets/plugins/owl-carousel2/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="../assets/plugins/owl-carousel2/assets/owl.theme.default.min.css" rel="stylesheet">
+    <link href="../assets/plugins/owl-carousel2/assets/owl.carousel.css" rel="stylesheet">
+    <link href="../assets/plugins/owl-carousel2/assets/owl.theme.default.css" rel="stylesheet">
     <link href="../assets/plugins/animate/animate.min.css" rel="stylesheet">
     <link href="../assets/plugins/swiper/css/swiper.min.css" rel="stylesheet">
-
     <link href="../assets/plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet">
     <link href="../assets/plugins/countdown/jquery.countdown.css" rel="stylesheet">
     <link href="../assets/plugins/datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
@@ -161,36 +159,54 @@
                                   --><span class="star active"></span>
                                    <span class="star"></span>
                               </div>
-                        <div class="img-carousel">
+                       
                             
                                  <?php
+                                global $exist;
                             if (isset($images) && !empty($images)) {
                              
                                 
 
-                               for ($i=0; $i< count($images);$i++)
+                            /*   for ($i=0; $i< count($images);$i++)
                                { 
-                                   var_dump($images[$i]['src']);
+                                   //var_dump($images[$i]['src']);
                                    
-                                   $imagesrc='../assets/upload/'.$images[$i]['src'];
-                                   var_dump($imagesrc);
+                                   
+                                   //var_dump($imagesrc);
                                     if (file_exists($imagesrc)) {
                                        
-                                        
+                                        echo "exist";
                                          
-                                       echo "<div><img src='.$imagesrc.' alt=''/></div>";
-                                     // echo "<div><img src='../assets/upload/terrain-hammamet.jpg' alt=''/></div>";
+                                       echo "  <div class='img-carousel'><div class='item'><img src='.$imagesrc.' alt=''/></div></div>";
+                                     
                                   
-                                    }
-                                    else 
-                                    {
-                                         echo "<div><img src='../assets/upload/default.jpg' alt=''/></div>";
+                                    }*/
+                                  $i=0;
+                                  while ($i<count($images))
+                                  {
+                                     
+                                      $imagesrc='../assets/upload/'.$images[$i]['src'];
+                                     // var_dump($imagesrc);
+                                      $j=$i;
+                                      while (file_exists($imagesrc))
+                                          {
                                           
-                                    }
-                                    
+                                          echo "  <div class='img-carousel'><div class='item'><img src='.$imagesrc.' alt=''/></div></div>";
+                                          $exist=true;
+                                        //  var_dump($exist);
+                                          if ($j<=$i){ 
+                                           $j++;
+                                          $imagesrc='../assets/upload/'.$images[$j]['src'];}
+                                          }
+                                          //$exist=false;
+                                      $i++;
+                                  }
+                                   if (!$exist){
+                                       echo "<div><img src='../assets/upload/default.jpg' alt=''/></div>";
+                                   } 
                                 }
                              
-                            }
+                            //}
                             else
                             {  
                                 echo "<div><img src='../assets/upload/default.jpg' alt=''/></div>";
@@ -199,7 +215,7 @@
                             ?>  
                             
                              
-                        </div>
+                        
                     </div>
                    
                  
@@ -217,11 +233,13 @@
                                 </div>
                             </div>
                             <div class="buttons">
-                                <a   id="view-phone"  href="" class="btn btn-theme btn-contact-user"     >
-                                     <span>Afficher le numéro</span>  
+                                <a   id="view-phone"  href="" class="btn  btn-contact-user"     >
+                                     <span class="tel-icon"></span>  
+                                     Afficher le numéro de téléphone
                                </a>
-                                  <a   id="view-contact" class="btn btn-theme btn-contact-user"    >
-                                      <span>Contacter l'annonceur</span>
+                                  <a   id="view-contact" class="btn  btn-contact-user"    >
+                                      <i class="fa fa-envelope-o"></i>
+                                      Contacter l'annonceur
                                 </a>
                              </div>
                         </aside>

@@ -102,7 +102,7 @@ elseif($action=='editAnnonce'){
                     <div class='md-input-wrapper md-input-wrapper-count'>
                         <label>Titre :</label>
                         <input type='hidden' id='id_annonce' value='{$uneannonce['0']['id_annonce']}' name='id_annonce' />
-                          <input class='form-control'  id='titre' type='text'  required='required' value='{$uneannonce['0']['titre']}' name='titre'> 
+                          <input class='form-control'  id='titre' type='text'  required='required' value=' {$uneannonce['0']['titre']}' name='titre'> 
                           
                            <span class='md-input-bar '> </span>
                     </div>
